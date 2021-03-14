@@ -1,0 +1,7 @@
+#!/bin/bash
+
+expressions=("▟" "▞" "▜" "▛" "▚" "▙" "▘")
+
+BLOCK=${expressions[$RANDOM % ${#expressions[@]}]}
+
+echo -ne "$1 $BLOCK ${COLOR_NC}"

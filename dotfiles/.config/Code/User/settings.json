@@ -1,0 +1,14 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "window.zoomLevel": 1,
+    "window.menuBarVisibility": "toggle",
+    "files.autoSave": "onWindowChange",
+    "typescript.check.tscVersion": false,
+    "tslint.autoFixOnSave": true,
+    "editor.rulers": [80],
+    "keyboard.dispatch": "keyCode",
+    "vim.disableAnnoyingNeovimMessage": true,
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.iconTheme": null,
+    "telemetry.enableTelemetry": false
+}

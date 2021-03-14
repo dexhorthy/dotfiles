@@ -1,0 +1,57 @@
+bindkey -s '^s' 'vim +NV\n'
+bindkey -s '^x' 'ssh dex.repl.dev\n'
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/dex/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/dex/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/dex/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/dex/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'; fi
+
+function _completemarks {
+  reply=($(ls $MARKPATH))
+}
+
+compctl -K _completemarks j
+compctl -K _completemarks unmark
+
+function _completerj {
+  reply=($(ls $GOPATH/src/github.com/replicatedcom))
+}
+compctl -K _completerj rj
+
+function _completertj {
+  reply=($(ls $GOPATH/src/github.com/retracedhq))
+}
+compctl -K _completertj rtj
+
+function _completerhj {
+  reply=($(ls $GOPATH/src/github.com/replicatedhq))
+}
+compctl -K _completerhj rhj
+
+function _completercj {
+  reply=($(ls $GOPATH/src/github.com/replicated-collab))
+}
+compctl -K _completercj rcj
+
+function _completegj {
+  reply=($(find ${GOPATH}/src/github.com -maxdepth 2))
+}
+compctl -K _completegj gj
+
+function _completedj {
+  reply=($(ls $GOPATH/src/github.com/dexhorthy))
+}
+compctl -K _completedj dj
+
+function _completeddj {
+  reply=($(ls ~/src/go/src/github.com/dexhorthy))
+}
+compctl -K _completeddj ddj
+
+function _completegitclean {
+  reply=($(git branch | grep -v '*'))
+}
+compctl -K _completegitclean gitclean
+
+

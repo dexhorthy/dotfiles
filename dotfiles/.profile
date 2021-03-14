@@ -1,0 +1,20 @@
+set -o vi
+export TERM=xterm-256color
+export EDITOR="vim"
+source ~/.mark
+source ~/.venv/bin/activate
+source ~/.aliases
+source ~/.gpg-ssh-etc
+
+export GREP_COLOR='0;32'
+export DOCKER_BUILDKIT=1
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+export CLINT_FORCE_COLOR=1
+export GOPATH="$HOME/go"
+export PATH="$PATH:$GOPATH/bin:$HOME/local/bin"
+export PATH="$HOME/bin:$PATH"
+export NVIM_HOME="$HOME/meta/notes/nvim"
+#export POMO_LOG_PATH="$HOME/meta/notes/pomo"
+export POMO_LOG_PATH=~/Documents/notes/fzf-vim/pomo.md
+
+export GOPATH=~/go

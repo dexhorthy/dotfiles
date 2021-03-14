@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Seed random generator
+RANDOM=$$$(date +%s)
+if [ $# -ne 0 ]
+then
+    nl=""
+else
+    nl="\n"
+fi
+
+
+echo -ne "$nl"
+cblock '\033[1;37m'
+cblock '\033[1;31m'
+cblock '\033[1;32m'
+cblock '\033[1;33m'
+cblock '\033[1;34m'
+cblock '\033[1;35m'
+cblock '\033[1;36m'
+cblock '\033[1;30m'
+echo -ne "$nl$nl"
+cblock '\033[0;37m'
+cblock '\033[0;31m'
+cblock '\033[0;32m'
+cblock '\033[0;33m'
+cblock '\033[0;34m'
+cblock '\033[0;35m'
+cblock '\033[0;36m'
+cblock '\033[0;30m'
+echo -ne "$nl$nl"
+echo -ne '\033[0m'
+

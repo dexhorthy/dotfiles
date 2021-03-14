@@ -1,0 +1,229 @@
+#!/usr/bin/zsh
+
+## THIS FILE
+alias al=". ~/.aliases"
+alias val="vim ~/.aliases && al"
+
+function wal() {
+    alias | grep $1 || which $1
+}
+
+function aal () {
+    echo "alias $1='$2'" >> ~/.aliases
+    al
+}
+## /THIS FILE
+
+
+## SHELL
+alias ls=exa
+alias cp='cp -v'
+alias back="cd $OLDPWD"
+alias tmpdir='cd $(mktemp -d) && pwd'
+
+alias tailf='tail -f'
+
+alias ..='cd ..'
+alias ~="cd ~"
+alias b="cd .."
+
+alias less='less -R'
+
+## /SHELL
+
+## WRITING
+
+# Pomodor log
+alias vpomo='vim $POMO_LOG_PATH'
+
+function plog() {
+    echo -e "`date`" "|" " " $@ >> $POMO_LOG_PATH
+}
+
+alias scratch='vim ~/Documents/notes/fzf-vim/.tmp'
+alias scrat='cat ~/meta/notes/.tmp'
+
+splitPomoDays() {
+  docker run -it -v $POMO_LOG_PATH:/out/pomo ubuntu apt update && apt install gawk && gawk -i inplace 'a!~$1{print x}a=$1' /out/pomo
+}
+## /WRITING
+
+## PATHS
+
+function rj() {
+    org=${GOPATH}/src/github.com/replicatedcom
+    cd ${org}/$1 2>/dev/null && echo cd ${org}/$1 
+}
+
+function dj() {
+    org=${GOPATH}/src/github.com/dexhorthy
+    cd ${org}/$1 2>/dev/null && echo cd ${org}/$1 
+}
+
+function rhj() {
+    org=${GOPATH}/src/github.com/replicatedhq
+    cd ${org}/$1 && echo cd ${org}/$1 
+}
+
+function rcj() {
+    org=${GOPATH}/src/github.com/replicated-collab
+    cd ${org}/$1 && echo cd ${org}/$
+}
+
+## /PATHS
+
+## GIT
+alias gcaa="git commit -a --amend -S"
+
+
+function gcam() {
+    git commit -a -S -m "$@"
+    REPO=$(basename `git rev-parse --show-toplevel`)
+    BRANCH=$(git rev-parse --abbrev-ref HEAD)
+    plog "[$(leftpad $REPO)] [$(leftpad $BRANCH)]" -- "$@"
+}
+
+
+alias gco="git checkout"
+
+function gs () {
+       git status  | grep -v '(use' | grep -v 'no changes'
+}
+
+alias gb="git branch | cat"
+alias gbd="git branch -d"
+
+alias grv="git remote -v"
+function  grr() {
+    git remote rename $@
+    git remote -v
+}
+
+function grao() {
+    git remote add origin git@github.com:dexhorthy/$1
+    echo
+    echo
+    git remote -v
+}
+
+alias gri="git rebase -i"
+
+alias grm="git rebase master"
+alias grc="git rebase --continue"
+alias gra="git rebase --abort"
+
+alias gpo="git push origin"
+alias gpu="git push upstream"
+
+function ss() {
+    git log --color --graph --decorate --pretty=format:'%C(bold blue)%h%Creset %an %C(bold cyan)%G?%Creset -%C(green)%d%Creset %s %C(bold cyan)(%cr)%Creset' --abbrev-commit --date=relative || :
+}
+
+# hard reset to upstream branch
+function gforce () {
+        if [ $# -ne 1 ]; then
+            echo 'USAGE: gforce <remote branch>'
+            return 1
+        fi
+
+        git status | grep 'nothing to commit' &>/dev/null;
+        if [ $? -eq 0 ]
+        then
+            git checkout $1
+            if [ $? -eq 0 ]
+            then
+                git fetch upstream
+                git reset --hard upstream/$1
+            fi
+        else
+            gs
+        fi
+}
+alias gfm='gforce master'
+alias gbranches="git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
+
+function gitclean() {
+    git branch -d $@
+    if [ $? -eq 0 ]; then
+        git push origin :$1 --no-verify
+    fi
+}
+
+## /GIT
+
+## VENV
+alias venv='. .venv/bin/activate'
+function renv() {
+    rm -rf .venv
+    newenv .venv
+    source .venv/bin/activate
+    pip install --upgrade pip
+    pip install --upgrade setuptools
+    [ -s requirements.txt ] && pip install -r requirements.txt
+}
+## /VENV
+
+
+
+## UBUNTU
+alias lawk='nohup xautolock -time 1 -locker slock &>/tmp/nohup.out &'
+alias unlawk='killall xautolock'
+## /UBUNTU
+
+
+## GCLOUD
+
+alias gcil='gcloud compute instances list'
+
+## /GCLOUD
+
+## KUBERNETES
+
+alias dfd='kubectl config use-context docker-for-desktop'
+
+function podname() {
+    selector=$1
+    kubectl get pods -l "${selector}" -o json | jq -rM '.items[] | .metadata.name' | tail -n1
+}
+
+## /KUBERNETES
+
+## PITH
+
+function leftpad() {
+    printf "%31s" $@
+}
+
+function yo() {
+        if [[ "$1" == "i" && "$2" == "said" ]]; then
+                sudo "${@:3}"
+        else
+                sudo $@
+        fi
+}
+
+function flip() {
+    echo " (╯*_*）╯︵$(echo "$@"|toilet -f term -F rotate)"
+}
+
+function flipc() {
+    flip $@ | pbcopy;
+}
+
+alias :w='echo `date +%s`C written'
+
+alias chmox='chmod +x'
+alias lol='echo lolololol'
+
+function gimme() {
+    echo sudo chown -R dex:staff $@
+    sudo chown -R dex:staff $@
+}
+
+## /PITH
+
+
+
+##
+#### TEMP
+#

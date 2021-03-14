@@ -1,0 +1,78 @@
+# opens iterm
+shift + alt - return : /Users/dex/.bin/new_iterm_window.sh
+
+# ========== yabai ===========================
+
+# Legend
+
+# alt - <key> : Navigation
+# shift + alt - <key>           : Moving / manipulating windows
+# lctrl + alt - <key>           : Resizing windows
+
+# ========== Navigation ========================
+
+# change focus
+
+alt - h : yabai -m window --focus west
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - l : yabai -m window --focus east
+
+
+# ========== Moving Windows ====================
+
+# move focused window
+shift + alt - h : yabai -m window --warp west
+shift + alt - j : yabai -m window --warp south
+shift + alt - k : yabai -m window --warp north
+shift + alt - l : yabai -m window --warp east
+
+# move to space
+shift + alt - 1 : yabai -m window --space 1;
+shift + alt - 2 : yabai -m window --space 2;
+shift + alt - 3 : yabai -m window --space 3;
+shift + alt - 4 : yabai -m window --space 4;
+shift + alt - 5 : yabai -m window --space 5;
+shift + alt - 6 : yabai -m window --space 6;
+shift + alt - 7 : yabai -m window --space 7;
+shift + alt - 8 : yabai -m window --space 8;
+shift + alt - 9 : yabai -m window --space 9;
+
+# ========== Floating Windows ==================
+
+# float window in center
+shift + alt - space : yabai -m window --toggle float;\
+          yabai -m window --grid 4:4:1:1:2:2
+
+# ========== Resizing Windows ==================
+
+# resize windows
+lctrl + alt - h : yabai -m window --resize right:-30:0
+lctrl + alt - j : yabai -m window --resize top:0:30
+lctrl + alt - k : yabai -m window --resize top:0:-30
+lctrl + alt - l : yabai -m window --resize right:30:0
+
+# ========== Misc ==============================
+
+# hard restarts 
+lctrl + shift + alt - r : brew services restart yabai && brew services restart skhd
+
+# make window native fullscreen
+alt - f : yabai -m window --toggle zoom-fullscreen
+
+# Make parent
+alt - p : yabai -m window --toggle zoom-parent
+
+# toggle orientation of current split
+alt - e : yabai -m window --toggle split
+
+# ========== Spaces ====================
+# unfortunately these seem not to work...
+# thankfully macOS has native shortcut management for this in system prefs
+
+# alt - 1 : yabai -m space --focus 1
+# alt - 2 : yabai -m space --focus 2
+# alt - 3 : yabai -m space --focus 3
+# alt - 4 : yabai -m space --focus 4
+# alt - 5 : yabai -m space --focus 5
+# alt - 6 : yabai -m space --focus 6

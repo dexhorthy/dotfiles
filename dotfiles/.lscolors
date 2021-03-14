@@ -1,0 +1,18 @@
+
+DIR=ex
+SYM_LINK=Fx
+SOCKET=Fx
+PIPE=dx
+EXE=gx
+BLOCK_SP=Dx
+CHAR_SP=Dx
+EXE_SUID=hb
+EXE_GUID=ad
+DIR_STICKY=Ex
+DIR_WO_STICKY=Ex
+
+# ls colors
+export LSCOLORS="$DIR$SYM_LINK$SOCKET$PIPE$EXE$BLOCK_SP$CHAR_SP$EXE_SUID$EXE_GUID$DIR_STICKY$DIR_WO_STICKY"
+
+zstyle ':completion:*' list-colors 'di=34:ln=35:so=32:pi=33:ex=32:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+

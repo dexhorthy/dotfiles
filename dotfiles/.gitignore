@@ -1,0 +1,16 @@
+kustomize/overlays/dev_dex
+
+.DS_Store
+.idea/
+/target
+.vagrant/
+*.iml
+.venv/
+nohup.out
+*.pyc
+atlassian-ide-plugin.xml
+*.versionsBackup
+dependency-reduced-pom.xml
+*.DiskOverflowQueue
+.gradletasknamecache
+node_modules/

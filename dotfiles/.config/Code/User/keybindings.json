@@ -1,0 +1,213 @@
+// Place your key bindings in this file to overwrite the defaults
+[
+    {
+        "key": "ctrl+b",
+        "command": "editor.action.goToDeclaration",
+        "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+    },
+    {
+        "key": "ctrl+shift+b",
+        "command": "editor.action.referenceSearch.trigger",
+        "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+    },
+    {
+        "key": "ctrl+[",
+        "command": "workbench.action.navigateBack"
+    },
+    {
+        "key": "capslock",
+        "command": "extension.vim_escape",
+        "when": "editorTextFocus && vim.active && !inDebugRepl"
+    },
+    {
+        "key": "ctrl+]",
+        "command": "workbench.action.navigateForward"
+    },
+    {
+        "key": "ctrl+i ctrl+r",
+        "command": "workbench.action.keybindingsReference"
+    },
+    {
+        "key": "ctrl+i ctrl+c",
+        "command": "editor.action.addCommentLine",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+i ctrl+k",
+        "command": "editor.action.defineKeybinding",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == 'json'"
+    },
+    {
+        "key": "ctrl+i ctrl+f",
+        "command": "editor.action.formatSelection",
+        "when": "editorHasDocumentSelectionFormattingProvider && editorHasSelection && editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+i ctrl+d",
+        "command": "editor.action.moveSelectionToNextFindMatch",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+i f12",
+        "command": "editor.action.openDeclarationToTheSide",
+        "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+    },
+    {
+        "key": "ctrl+i ctrl+u",
+        "command": "editor.action.removeCommentLine",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+i ctrl+i",
+        "command": "editor.action.showHover",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+i ctrl+x",
+        "command": "editor.action.trimTrailingWhitespace",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+i ctrl+i",
+        "command": "editor.debug.action.showDebugHover",
+        "when": "editorTextFocus && inDebugMode"
+    },
+    {
+        "key": "ctrl+i ctrl+0",
+        "command": "editor.foldAll",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+i ctrl+1",
+        "command": "editor.foldLevel1",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+i ctrl+2",
+        "command": "editor.foldLevel2",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+i ctrl+3",
+        "command": "editor.foldLevel3",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+i ctrl+4",
+        "command": "editor.foldLevel4",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+i ctrl+5",
+        "command": "editor.foldLevel5",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+i ctrl+6",
+        "command": "editor.foldLevel6",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+i ctrl+7",
+        "command": "editor.foldLevel7",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+i ctrl+8",
+        "command": "editor.foldLevel8",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+i ctrl+9",
+        "command": "editor.foldLevel9",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+i ctrl+[",
+        "command": "editor.foldRecursively",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+i ctrl+j",
+        "command": "editor.unfoldAll",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+i ctrl+]",
+        "command": "editor.unfoldRecursively",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+i ctrl+w",
+        "command": "workbench.action.closeAllEditors"
+    },
+    {
+        "key": "ctrl+i w",
+        "command": "workbench.action.closeEditorsInGroup"
+    },
+    {
+        "key": "ctrl+i f",
+        "command": "workbench.action.closeFolder"
+    },
+    {
+        "key": "ctrl+i m",
+        "command": "workbench.action.editor.changeLanguageMode"
+    },
+    {
+        "key": "ctrl+i p",
+        "command": "workbench.action.files.copyPathOfActiveFile"
+    },
+    {
+        "key": "ctrl+i ctrl+o",
+        "command": "workbench.action.files.openFolder"
+    },
+    {
+        "key": "ctrl+i r",
+        "command": "workbench.action.files.revealActiveFileInWindows"
+    },
+    {
+        "key": "ctrl+i o",
+        "command": "workbench.action.files.showOpenedFileInNewWindow"
+    },
+    {
+        "key": "ctrl+i ctrl+right",
+        "command": "workbench.action.focusNextGroup"
+    },
+    {
+        "key": "ctrl+i ctrl+left",
+        "command": "workbench.action.focusPreviousGroup"
+    },
+    {
+        "key": "ctrl+i enter",
+        "command": "workbench.action.keepEditor"
+    },
+    {
+        "key": "ctrl+i ctrl+r",
+        "command": "workbench.action.keybindingsReference"
+    },
+    {
+        "key": "ctrl+i left",
+        "command": "workbench.action.moveActiveEditorGroupLeft"
+    },
+    {
+        "key": "ctrl+i z",
+        "command": "workbench.action.toggleZenMode"
+    },
+    {
+        "key": "ctrl+i ctrl+m",
+        "command": "workbench.extensions.action.showRecommendedKeymapExtensions"
+    },
+    {
+        "key": "ctrl+i e",
+        "command": "workbench.files.action.focusOpenEditorsView"
+    },
+    {
+        "key": "ctrl+i v",
+        "command": "markdown.showPreviewToSide",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+i ctrl+s",
+        "command": "workbench.action.openGlobalKeybindings"
+    }
+]

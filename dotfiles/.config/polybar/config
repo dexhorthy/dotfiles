@@ -1,0 +1,439 @@
+[colors]
+transparent = #00000000
+grey        = #928374
+bgrey     = #7c6f64
+#solarizedBG = #001D25
+solarizedFG = #6f8183
+solarizedBlue = #666666
+solarizedCyan = #099698
+solarizedBGAccent = #222222
+solarizedBG = #222222
+
+tblack   = #223322
+tred     = #DC8068
+treallyred     = #D01A23
+tgreen   = #44BB66
+tyellow  = #E1BA6A
+tblue    = #333333
+tmagenta = #C89099
+tcyan    = #099698
+tgrey    = #222222
+twhite    = #515C5C
+background = #444444
+
+[bar/rtop]
+width    = 100%
+height   = 15
+bottom = false
+
+background = #444444
+foreground = ${colors.tblack}
+
+border-size = 0
+
+font-0 = hack:pixelsize=10;1
+font-1 = unifont:size=6:heavy:fontformat=truetype;-2
+font-2 = siji:pixelsize=12;0
+font-3 = FontAwesome:pixelsize=6;0
+
+modules-left = 
+modules-center = 
+modules-right = replicatedpodhealthy replicatedpodbad
+
+override-redirect = true
+wm-restack = i3
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+[bar/top]
+width    = 100%
+height   = 15
+# height   = 21
+bottom = true
+
+background = #444444
+foreground = ${colors.tblack}
+
+border-size = 0
+
+font-0 = hack:pixelsize=10;1
+#font-0 = hack:pixelsize=16;1
+font-1 = unifont:size=6:heavy:fontformat=truetype;-2
+font-2 = siji:pixelsize=12;0
+font-3 = FontAwesome:pixelsize=6;0
+
+modules-left = i3 xwindow 
+modules-center = 
+# modules-center = replicatedpodhealthy replicatedpodbad
+modules-right = topproc cpu memory battery tnet network battery2 date
+
+override-redirect = true
+wm-restack = i3
+
+[bar/bigtop]
+width    = 100%
+height   = 32
+bottom = true
+
+background = #444444
+foreground = ${colors.tblack}
+
+border-size = 0
+
+font-0 = hack:pixelsize=20;1
+font-1 = unifont:size=6:heavy:fontformat=truetype;-2
+font-2 = siji:pixelsize=12;0
+font-3 = FontAwesome:pixelsize=6;0
+
+modules-left = i3 xwindow 
+modules-center = 
+# modules-center = replicatedpodhealthy replicatedpodbad
+modules-right = topproc cpu memory battery tnet network battery2 date
+
+override-redirect = true
+wm-restack = i3
+
+[module/network]
+type = internal/network
+interface = wlp3s0
+
+interval = 3.0
+ping-interval = 3
+udspeed-minwidth = 3
+format-connected-prefix = " "
+format-connected-suffix = " "
+format-connected-background = #919191
+
+format-connected = <ramp-signal> <label-connected>
+format-disconnected = <label-disconnected>
+label-connected = %signal%% %{F#85FF85}%downspeed% ⬇️ %{F#5656D0}%upspeed:5% ⬆️ 
+label-connected-foreground = #444444
+
+label-disconnected = " not connected "
+label-disconnected-foreground = #66ffff
+
+ramp-signal-0 = "▁     "
+ramp-signal-0-foreground = ${colors.treallyred}
+ramp-signal-1 = "▁▂    "
+ramp-signal-1-foreground = ${colors.tred}
+ramp-signal-2 = "▁▂▃   "
+ramp-signal-2-foreground = ${colors.tyellow}
+ramp-signal-3 = "▁▂▃▄  "
+ramp-signal-3-foreground = ${colors.tyellow}
+ramp-signal-4 = "▁▂▃▄▅ "
+ramp-signal-4-foreground = #85FF85
+ramp-signal-5 = "▁▂▃▄▅▆"
+ramp-signal-5-foreground = #85FF85
+
+[module/tnet]
+type = internal/network
+interface = wlan0
+
+interval = 3.0
+ping-interval = 3
+udspeed-minwidth = 3
+format-connected-prefix = " "
+format-connected-suffix = " "
+format-connected-background = #919191
+
+format-connected = <ramp-signal> <label-connected>
+format-disconnected = <label-disconnected>
+label-connected = %signal%% %{F#85FF85}%downspeed% ⬇️ %{F#5656D0}%upspeed:5% ⬆️ 
+label-connected-foreground = #444444
+
+label-disconnected = " not connected "
+label-disconnected-foreground = #66ffff
+
+ramp-signal-0 = "▁     "
+ramp-signal-0-foreground = ${colors.treallyred}
+ramp-signal-1 = "▁▂    "
+ramp-signal-1-foreground = ${colors.tred}
+ramp-signal-2 = "▁▂▃   "
+ramp-signal-2-foreground = ${colors.tyellow}
+ramp-signal-3 = "▁▂▃▄  "
+ramp-signal-3-foreground = ${colors.tyellow}
+ramp-signal-4 = "▁▂▃▄▅ "
+ramp-signal-4-foreground = #85FF85
+ramp-signal-5 = "▁▂▃▄▅▆"
+ramp-signal-5-foreground = #85FF85
+
+[module/xwindow]
+type   = internal/xwindow
+format = <label>
+label  = %title:0:42:...%    
+
+label-foreground = #bbbbbb
+format-background = #333333
+format-padding    = 2
+format-suffix            = "   %{B- F#333333}"
+
+[module/i3]
+type            = internal/i3
+format          = <label-state><label-mode>
+index-sort      = true
+wrapping-scroll = true
+strip-wsnumbers = true
+pin-workspaces  = true
+
+label-mode-foreground      = ${colors.solarizedBG}
+label-mode-background      = ${colors.tmagenta}
+
+label-focused              = %{B#222222}%{F#44BB66}%{F-}%{B#44BB66} %name% %{B#222222}%{F#44BB66}
+label-focused-padding      = 0
+
+label-unfocused            = %name%
+label-unfocused-background = ${colors.tgrey}
+label-unfocused-foreground = ${colors.solarizedFG}
+label-unfocused-padding    = 3
+
+kabel-urgent               = %name%!
+label-urgent-background    = ${colors.tgrey}
+label-urgent-foreground    = ${colors.tred}
+label-urgent-padding       = 5
+
+format-prefix            = 
+format-prefix-foreground = ${colors.tgrey}
+format-prefix-background = ${colors.solarizedBG}
+format-suffix            = 
+format-suffix-background = ${module/xwindow.format-background}
+format-suffix-foreground = ${colors.tgrey}
+
+[module/date]
+type = internal/date
+interval = 1
+
+format-prefix = "%{B#919191 F#eeeeee}%{B#eeeeee F#515C5C}"
+#format-foreground = #eeeeee
+#format-background = ${colors.solarizedBGAccent}
+
+date = "%y/%m/%d"
+date-alt = "%d"
+
+time = " %H:%M:%S"
+time-alt =  %H:%M
+
+label = " %date% %time%"
+
+[module/battery2]
+type    = internal/battery
+battery = BAT1
+adapter = AC
+full-at = 99
+
+format-charging    = <animation-charging> <label-charging>
+time-format        = %H:%M
+
+format-discharging = <ramp-capacity> <label-discharging>
+label-discharging  = %percentage%  (%time%)
+
+format-padding     = 0
+
+format-background = #717171
+format-foreground = ${colors.tblack}
+
+format-suffix            = "   %{B#717171 F#919191}"
+format-prefix            = "  "
+
+format-full-suffix        = "   %{B#717c7c F#222222}"
+format-charging-suffix    = ${self.format-suffix}
+format-discharging-suffix = ${self.format-suffix}
+
+format-full-prefix = "%{B#919191 F#44bb66}%{B#44bb66 F#222222}    "
+format-charging-prefix    = "%{B#919191 F#717171}%{B#717171 F#222222}  "
+format-discharging-prefix = "%{B#919191 F#717171}%{B#717171  F#222222}  "
+
+
+format-full-background        = ${colors.tgreen}
+format-charging-background    = ${self.format-background}
+format-discharging-background = ${self.format-background}
+
+format-full-foreground        = ${self.format-foreground}
+format-charging-foreground    = ${self.format-foreground}
+format-discharging-foreground = ${self.format-foreground}
+
+format-full-padding           = ${self.format-padding}
+format-charging-padding       = ${self.format-padding}
+format-discharging-padding    = ${self.format-padding}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+
+[module/battery]
+type    = internal/battery
+battery = BAT1
+adapter = AC
+full-at = 99
+
+format-charging    = <animation-charging> <label-charging>
+time-format        = %H:%M
+
+format-discharging = <ramp-capacity> <label-discharging>
+label-discharging  = %percentage%  (%time%)
+
+format-padding     = 0
+
+format-background = #717171
+format-foreground = ${colors.tblack}
+
+format-suffix            = "   %{B#717171 F#919191}"
+format-prefix            = "  "
+
+format-full-suffix        = "   %{B#44bb66 F#919191}"
+format-charging-suffix    = ${self.format-suffix}
+format-discharging-suffix = ${self.format-suffix}
+
+format-full-prefix = "%{B#515C5C F#44bb66}%{B#44bb66 F#222222}    "
+format-charging-prefix    = "%{B#515C5C F#717171}%{B#717171 F#222222}  "
+format-discharging-prefix = "%{B#515C5C F#717171}%{B#717171  F#222222}  "
+
+
+format-full-background        = ${colors.tgreen}
+format-charging-background    = ${self.format-background}
+format-discharging-background = ${self.format-background}
+
+format-full-foreground        = ${self.format-foreground}
+format-charging-foreground    = ${self.format-foreground}
+format-discharging-foreground = ${self.format-foreground}
+
+format-full-padding           = ${self.format-padding}
+format-charging-padding       = ${self.format-padding}
+format-discharging-padding    = ${self.format-padding}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+
+[module/volume]
+type = internal/volume
+
+format-volume = <label-volume> <bar-volume>
+label-volume = ""
+label-volume-foreground = ${colors.solarizedFG}
+label-muted = " muted "
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = │
+bar-volume-indicator-font = 2
+bar-volume-indicator-foreground = #ff
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = 
+
+[module/cpu]
+type = internal/cpu
+
+interval = 0.4
+
+format = <ramp-coreload>
+format-prefix = "%{F#515C5C B#3c3c3c}%{B#515C5C F#222222} "
+format-suffix = " "
+
+ramp-coreload-0 = ▁
+ramp-coreload-0-foreground = ${colors.tgreen}
+ramp-coreload-1 = ▂
+ramp-coreload-1-foreground = ${colors.tgreen}
+ramp-coreload-2 = ▃
+ramp-coreload-2-foreground = ${colors.tgreen}
+ramp-coreload-3 = ▄
+ramp-coreload-3-foreground = ${colors.tgreen}
+ramp-coreload-4 = ▅
+ramp-coreload-4-foreground = ${colors.tgreen}
+ramp-coreload-5 = ▆
+ramp-coreload-5-foreground = ${colors.tyellow}
+ramp-coreload-6 = ▇
+ramp-coreload-6-foreground = ${colors.tred}
+ramp-coreload-7 = ▇
+#ramp-coreload-7 = 🍺
+ramp-coreload-7-foreground = ${colors.treallyred}
+
+[module/memory]
+type = internal/memory
+interval = 3
+
+format = <bar-used>
+format-foreground = ${colors.twhite}
+format-background = ${colors.twhite}
+format-suffix = " "
+
+bar-used-indicator =
+bar-used-width = 8
+bar-used-foreground-0 = ${colors.tgreen}
+bar-used-foreground-1 = ${colors.tgreen}
+bar-used-foreground-2 = ${colors.tyellow}
+bar-used-foreground-3 = ${colors.tred}
+bar-used-fill = ▐
+bar-used-empty = ▐
+bar-used-empty-foreground = #444444
+
+[module/kubecontext]
+type = custom/script
+exec = echo "$(kubectl config current-context | cut -d '_' -f 4) "
+interval = 15
+format-background = ${colors.solarizedCyan}
+format-underline = #268bd2
+format-prefix = "%{B#001D25 F#1F75C7}%{B#1F75C7 F#FFFFFF} ☸ "
+
+[module/topproc]
+type = custom/script
+exec = echo "$(ps -Ao comm,pcpu --sort=-pcpu | head -n 2 | tail -n1 | sed 's/  */ /g') "
+interval = 2
+format-prefix = "%{F#3c3c3c}%{B#3c3c3c F#FFFFFF} "
+
+[module/fanspeed]
+type = custom/script
+exec = echo "$(tail -n1 /var/log/macfanctl.log 2>&1 | cut -d' ' -f  2,5 | tr -d , ) "
+interval = 5
+format-background = ${colors.solarizedCyan}
+format-underline = #268bd2
+format-prefix = "%{B#001D25 F#212C2C}%{B#212C2C F#FFFFFF} "
+
+[module/replicatedpodbad]
+type = custom/script
+exec = echo "$(kubectl get pods -ltier=master 2>&1 | grep -v Terminating | tail -n1 | grep -Ev 'Running|did you specify|No resources|Unable to|server doesn.t have')"
+interval = 10
+format-background = #FFB52F
+format-underline = #268bd2
+format-prefix = "%{B#444444 F#FFB52F}%{B#FFB52F F#FFFFFF } %{F#FFFFFF}® %{F#FFFFFF }"
+# format-suffix = " %{B#444444 F#FFB52F}%{B#444444 F#FFFFFF} "
+
+[module/replicatedpodhealthy]
+type = custom/script
+exec = echo "$(kubectl get pods -ltier=master 2>&1 | grep -v 'Error in configuration' | grep -v Terminating | tail -n1 | grep -E 'Running')"
+interval = 10
+format-background = #FFFFFF
+format-underline = #268bd2
+format-prefix = "%{B#444444 F#FFFFFF}%{B#FFFFFF F#10A1C3 } %{F#FF0000}ℝ %{F#10A1C3 }"
+# format-suffix = " %{B#444444 F#FFFFFF}%{B#444444 F#10A1C3} "

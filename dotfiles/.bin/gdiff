@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ $# -eq 1 ]; then
+  git diff -w --color=always $1^ $1 | less -R
+else
+  git diff -w "$@" --color=always | less -R 
+fi

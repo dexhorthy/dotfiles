@@ -1,0 +1,56 @@
+#!/bin/bash
+
+underline=`tput smul`
+nounderline=`tput rmul`
+BLUE='\033[0;34m'
+NORMAL='\033[00m'
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+
+if [ -z  $1 ]
+then
+    echo "Usage: $0 <git repositories root>"
+    exit 1
+fi
+dir=$1
+
+# check is git repo
+cd $dir
+if [[ -d .hg  || -d ./.git || -d ../.git || -d ../../.git ]]
+then
+    echo -n
+else
+    exit 0
+fi
+
+git config color.status always
+git config color.status.changed green
+git config color.status.added green
+git config color.status.delted red
+
+
+
+dir=${dir%*/}
+base=$(basename $dir)
+N=${dir##*/}
+DIR="$underline${BLUE}$N${GREEN}$nounderline:"
+if [[ -d ./.git || -d ../.git || -d ../../.git ]]; then
+    STUFF=$(git status | grep -v '#' | grep -E 'new|modified|deleted' )
+    UNTRACKED_STUFF=$(git status | grep -v '#' | awk '/Untracked files/{y=1;next}y != 0{print "\t\033[0;31muntracked:" $0}' | grep -v commit | sed '/untracked:\s*$/d')
+else
+    if [[ -d .hg ]]; then
+        STUFF=$(hg st --color=always | sed 's/^/        /')
+    fi
+fi
+if [ ! -z "$STUFF" ]
+then
+    printf "$DIR\n"
+    printf "$NORMAL$STUFF\n"
+fi
+
+if [ ! -z "$UNTRACKED_STUFF" ]; then
+    echo
+    printf "$NORMAL$UNTRACKED_STUFF\n"
+fi
+
+

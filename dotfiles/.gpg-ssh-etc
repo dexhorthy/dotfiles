@@ -1,0 +1,17 @@
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+gpg-connect-agent updatestartuptty /bye &>/dev/null
+
+function gpg_reset_agent() {
+  pkill gpg-agent 
+  pkill ssh-agent 
+  pkill pinentry
+  eval $(gpg-agent --daemon --enable-ssh-support)
+}
+
+function gpg_clear_pkey() {
+  rm -r ~/.gnupg/private-keys-v1.d
+}
+
+

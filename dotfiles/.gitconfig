@@ -1,0 +1,36 @@
+[user]
+    name = dexhorthy
+    email = dexter@replicated.com
+    signingKey = 591C0A206414E865
+[core]
+    editor = vim
+    excludesfile = ~/.gitignore
+
+[color]
+    status=always
+    ui = true
+
+[color "status"]
+    added = green
+    changed = green
+    deleted = red
+    modified = green
+
+[push]
+    default = matching
+
+[diff]
+    tool = vimdiff --no-prompt
+
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+
+[gpg]
+	program = gpg
+
+[hub]
+	protocol = https
+
+[credential "https://github.com"]
+	helper = /usr/local/bin/hub-credential-helper
