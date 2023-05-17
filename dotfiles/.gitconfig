@@ -34,3 +34,5 @@
 
 [credential "https://github.com"]
 	helper = /usr/local/bin/hub-credential-helper
+[init]
+	defaultBranch = main

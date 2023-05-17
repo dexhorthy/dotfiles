@@ -1,7 +1,12 @@
+support-bundle-*
+enterprise-gtm-starter
+password.txt
+old_server
 kustomize/overlays/dev_dex
 
 .DS_Store
 .idea/
+.env
 /target
 .vagrant/
 *.iml
@@ -14,3 +19,15 @@ dependency-reduced-pom.xml
 *.DiskOverflowQueue
 .gradletasknamecache
 node_modules/
+*.swp
+*.tfplan
+*.htfplan
+.dex/
+.ipynb_checkpoints
+__pycache__
+
+
+initcontainer-logs/manifests/0-10-12/
+initcontainer-logs/manifests/0-38-0/
+initcontainer-logs/manifests/0-10-12.tar.gz
+initcontainer-logs/manifests/0-38-0.tar.gz

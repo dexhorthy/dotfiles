@@ -16,5 +16,10 @@ export PATH="$HOME/bin:$PATH"
 export NVIM_HOME="$HOME/meta/notes/nvim"
 #export POMO_LOG_PATH="$HOME/meta/notes/pomo"
 export POMO_LOG_PATH=~/Documents/notes/fzf-vim/pomo.md
+export HELM_EXPERIMENTAL_OCI=1
 
 export GOPATH=~/go
+
+
+. $HOME/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+. $HOME/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc

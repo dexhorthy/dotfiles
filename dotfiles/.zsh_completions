@@ -7,6 +7,7 @@ if [ -f '/Users/dex/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/p
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/dex/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/dex/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'; fi
 
+
 function _completemarks {
   reply=($(ls $MARKPATH))
 }
@@ -55,3 +56,5 @@ function _completegitclean {
 compctl -K _completegitclean gitclean
 
 
+
+source <(kubectl completion zsh)

@@ -1,6 +1,8 @@
 # opens iterm
 shift + alt - return : /Users/dex/.bin/new_iterm_window.sh
 
+# restart
+shift + alt - r : brew services restart yabai
 # ========== yabai ===========================
 
 # Legend

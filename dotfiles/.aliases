@@ -73,11 +73,13 @@ function rcj() {
 ## /PATHS
 
 ## GIT
-alias gcaa="git commit -a --amend -S"
+export SIGN=
+# export SIGN=-S
+alias gcaa="git commit -a --amend ${SIGN}"
 
 
 function gcam() {
-    git commit -a -S -m "$@"
+    git commit -a ${SIGN} -m "$@"
     REPO=$(basename `git rev-parse --show-toplevel`)
     BRANCH=$(git rev-parse --abbrev-ref HEAD)
     plog "[$(leftpad $REPO)] [$(leftpad $BRANCH)]" -- "$@"
@@ -116,7 +118,7 @@ alias gpo="git push origin"
 alias gpu="git push upstream"
 
 function ss() {
-    git log --color --graph --decorate --pretty=format:'%C(bold blue)%h%Creset %an %C(bold cyan)%G?%Creset -%C(green)%d%Creset %s %C(bold cyan)(%cr)%Creset' --abbrev-commit --date=relative || :
+    git log --color --graph --decorate --pretty=format:'%C(bold blue)%h%Creset %an %C(bold cyan)%G?%Creset -%C(green)%d%Creset %s %C(bold cyan)(%cr)%Creset' --abbrev-commit --date=relative 
 }
 
 # hard reset to upstream branch
@@ -149,13 +151,20 @@ function gitclean() {
     fi
 }
 
+function gitcleanu() {
+    git branch -d $@
+    if [ $? -eq 0 ]; then
+        git push upstream :$1 --no-verify
+    fi
+}
+
 ## /GIT
 
 ## VENV
 alias venv='. .venv/bin/activate'
 function renv() {
     rm -rf .venv
-    newenv .venv
+    virtualenv .venv
     source .venv/bin/activate
     pip install --upgrade pip
     pip install --upgrade setuptools
@@ -227,3 +236,6 @@ function gimme() {
 ##
 #### TEMP
 #
+alias gratch='grip ~/Documents/notes/fzf-vim/.tmp'
+alias fre='goland /Users/dex/go/src/github.com/replicatedhq/fre/fre.md'
+alias grhh='git reset --hard head'

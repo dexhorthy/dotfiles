@@ -7,7 +7,7 @@ DISABLE_LS_COLORS="false"
 # COMPLETION_WAITING_DOTS="true"
 
 HIST_STAMPS="yyyy-mm-dd"
-plugins=(git zsh-syntax-highlighting history-substring-search-custom kubectl)
+plugins=(zsh-syntax-highlighting history-substring-search-custom kubectl)
 
 # User configuration
 
@@ -31,3 +31,5 @@ fpath=(~/.oh-my-zsh/custom/functions $fpath)
 
 . ~/.profile
 show_colors
+alias k=kubectl
+complete -F __start_kubectl k
