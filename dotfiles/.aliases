@@ -278,20 +278,9 @@ alias gratch='grip ~/Documents/notes/fzf-vim/.tmp'
 alias grhh='git reset --hard head'
 alias pych='open -a PyCharm.app'
 alias goland='open -a GoLand.app'
-alias gpr='git push ravi'
-alias awsdev='aws --profile metalytics-aws-dev --region us-east-2'
-alias awsprod='aws --profile metalytics-aws-prod --region us-east-2'
-alias awsprodro='aws --profile metalytics-prod-readonly --region us-east-2'
-alias awsroot='aws --profile metalytics-dev --region us-east-2'
-alias kdev='kubectl --context=arn:aws:eks:us-east-2:524852913654:cluster/metalytics-dev-saas'
-alias kprod='kubectl --context=arn:aws:eks:us-east-2:654654321315:cluster/metalytics-prod-saas'
-alias kprodro='kubectl --context=arn:aws:eks:us-east-2:654654321315:cluster/metalytics-prod-saas-ro'
-alias devk9s='k9s --headless --logoless --context=arn:aws:eks:us-east-2:524852913654:cluster/metalytics-dev-saas'
-alias prodk9s='k9s --headless --logoless --context=arn:aws:eks:us-east-2:654654321315:cluster/metalytics-prod-saas'
-alias prodk9sro='k9s --headless --logoless  --context=arn:aws:eks:us-east-2:654654321315:cluster/metalytics-prod-saas-ro'
-alias devhelm='helm --kube-context=arn:aws:eks:us-east-2:524852913654:cluster/metalytics-dev-saas'
-alias prodhelm='helm --kube-context=arn:aws:eks:us-east-2:654654321315:cluster/metalytics-prod-saas'
-alias prodrohelm='helm --kube-context=arn:aws:eks:us-east-2:654654321315:cluster/metalytics-prod-saas-ro'
+[ -f $HOME/.ial ] && . $HOME/.ial
+
+
 
 
 

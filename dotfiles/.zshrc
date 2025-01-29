@@ -11,7 +11,7 @@ plugins=(zsh-syntax-highlighting history-substring-search-custom kubectl)
 
 # User configuration
 
-export PATH="$HOME/bin:$HOME/.cargo/bin:$HOME/.bin:$HOME/homebrew/bin:$HOME/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/go/bin:/usr/texbin:$HOME/.rvm/bin:$HOME/go/bin:$HOME/.local/bin:$HOME/.yarn/bin"
+export PATH="$HOME/bin:$HOME/.cargo/bin:$HOME/.bin:$HOME/.bin/baml/:$HOME/homebrew/bin:$HOME/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/go/bin:/usr/texbin:$HOME/.rvm/bin:$HOME/go/bin:$HOME/.local/bin:$HOME/.yarn/bin"
 export PATH="$PATH:$HOME/opt/kubebuilder/bin"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PATH="$PATH:$HOME/opt/aws-cli"
