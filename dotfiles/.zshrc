@@ -14,6 +14,7 @@ plugins=(zsh-syntax-highlighting history-substring-search-custom kubectl)
 export PATH="$HOME/bin:$HOME/.cargo/bin:$HOME/.bin:$HOME/homebrew/bin:$HOME/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/go/bin:/usr/texbin:$HOME/.rvm/bin:$HOME/go/bin:$HOME/.local/bin:$HOME/.yarn/bin"
 export PATH="$PATH:$HOME/opt/kubebuilder/bin"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export PATH="$PATH:$HOME/opt/aws-cli"
 export FPATH="$HOME/homebrew/share/zsh/site-functions/:$FPATH"
 
 autoload -U zmv
@@ -33,3 +34,21 @@ fpath=(~/.oh-my-zsh/custom/functions $fpath)
 show_colors
 alias k=kubectl
 complete -F __start_kubectl k
+
+
+# added by Snowflake SnowSQL installer v1.2
+export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# bun completions
+[ -s "/Users/dex/.bun/_bun" ] && source "/Users/dex/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Added by Windsurf
+export PATH="/Users/dex/.codeium/windsurf/bin:$PATH"

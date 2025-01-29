@@ -293,7 +293,6 @@ prompt_agnoster_main() {
   CURRENT_BG='NONE'
   prompt_context
   prompt_dir
-  prompt_kubecontext
   prompt_git
   prompt_status
   prompt_end

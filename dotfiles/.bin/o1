@@ -1,0 +1,29 @@
+#!/Users/dex/.venv/bin/python
+from openai import OpenAI
+import sys
+
+client = OpenAI()
+
+if len(sys.argv) < 2:
+    input = sys.stdin.read()
+else:
+    input = " ".join(sys.argv[1:])
+
+if not input:
+    raise ValueError("pass input as argv or stdin")
+
+stream = client.chat.completions.create(
+    model="o1-preview",
+    messages=[
+        {
+            "role": "user",
+            "content": input
+        }
+    ],
+    stream=True,
+)
+for chunk in stream:
+    if chunk.choices[0].delta.content is not None:
+        print(chunk.choices[0].delta.content, end="", flush=True)
+
+print()

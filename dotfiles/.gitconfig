@@ -1,6 +1,6 @@
 [user]
     name = dexhorthy
-    email = dexter@replicated.com
+    email = dexter@humanlayer.dev
     signingKey = 591C0A206414E865
 [core]
     editor = vim
@@ -23,9 +23,6 @@
     tool = vimdiff --no-prompt
 
 
-[url "git@github.com:"]
-	insteadOf = https://github.com/
-
 [gpg]
 	program = gpg
 
@@ -36,3 +33,5 @@
 	helper = /usr/local/bin/hub-credential-helper
 [init]
 	defaultBranch = main
+[tag]
+	sort = -version:refname

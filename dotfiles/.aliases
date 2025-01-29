@@ -16,7 +16,7 @@ function aal () {
 
 
 ## SHELL
-alias ls=exa
+#alias ls=exa
 alias cp='cp -v'
 alias back="cd $OLDPWD"
 alias tmpdir='cd $(mktemp -d) && pwd'
@@ -85,6 +85,22 @@ function gcam() {
     plog "[$(leftpad $REPO)] [$(leftpad $BRANCH)]" -- "$@"
 }
 
+function gco1() {
+    local base_branch=${1:-main}  # Use the first argument if provided, otherwise default to 'main'
+
+    msg=$((echo "read this git commit and generate a new summary"; git diff "$base_branch"..HEAD; echo -e '\n\nINSTRUCTIONS - summarize in proper git commit format, with title on the first line and summary below - use this template, being very brief and concise, only a few short bullet points per line: \n\n'; cat .github/PULL_REQUEST_TEMPLATE.md) | o1)
+    gcaa -m "$msg"
+    gcaa
+}
+
+function gclaude() {
+    local base_branch=${1:-main}  # Use the first argument if provided, otherwise default to 'main'
+
+    msg=$((echo "read this git commit and generate a new summary"; git diff "$base_branch"..HEAD; echo -e '\n\nINSTRUCTIONS - summarize in proper git commit format, with title on the first line and summary below - use this template, being very brief and concise, only a few short bullet points per line: \n\n'; cat .github/PULL_REQUEST_TEMPLATE.md) | claude)
+    gcaa -m "$msg"
+    gcaa
+}
+
 
 alias gco="git checkout"
 
@@ -135,6 +151,7 @@ function gforce () {
             if [ $? -eq 0 ]
             then
                 git fetch upstream
+                git fetch upstream --tags
                 git reset --hard upstream/$1
             fi
         else
@@ -142,7 +159,10 @@ function gforce () {
         fi
 }
 alias gfm='gforce master'
-alias gbranches="git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
+alias gbranches="git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))' --color=always | less -R"
+
+
+alias merged-gbranches="git for-each-ref --merged refs/heads/main --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
 
 function gitclean() {
     git branch -d $@
@@ -161,13 +181,25 @@ function gitcleanu() {
 ## /GIT
 
 ## VENV
-alias venv='. .venv/bin/activate'
-function renv() {
+alias venv='. .venv/bin/activate 2>/dev/null || . venv/bin/activate'
+function renv3() {
     rm -rf .venv
-    virtualenv .venv
-    source .venv/bin/activate
+    rm -rf venv
+    python3.11 -m venv venv
+    source venv/bin/activate
     pip install --upgrade pip
     pip install --upgrade setuptools
+    pip install --upgrade poetry
+    [ -s requirements.txt ] && pip install -r requirements.txt
+}
+function renv310() {
+    rm -rf .venv
+    rm -rf venv
+    python3.10 -m venv venv
+    source venv/bin/activate
+    pip install --upgrade pip
+    pip install --upgrade setuptools
+    pip install --upgrade poetry
     [ -s requirements.txt ] && pip install -r requirements.txt
 }
 ## /VENV
@@ -200,7 +232,7 @@ function podname() {
 ## PITH
 
 function leftpad() {
-    printf "%31s" $@
+    printf "%20s" $@
 }
 
 function yo() {
@@ -231,11 +263,54 @@ function gimme() {
 
 ## /PITH
 
+function osudo() {
+  echo $@  > /tmp/osudo_script.sh
+  chmod +x /tmp/osudo_script.sh
+  osascript -e "do shell script \"/tmp/osudo_script.sh\" with administrator privileges"
+}
+
 
 
 ##
 #### TEMP
 #
 alias gratch='grip ~/Documents/notes/fzf-vim/.tmp'
-alias fre='goland /Users/dex/go/src/github.com/replicatedhq/fre/fre.md'
 alias grhh='git reset --hard head'
+alias pych='open -a PyCharm.app'
+alias goland='open -a GoLand.app'
+alias gpr='git push ravi'
+alias awsdev='aws --profile metalytics-aws-dev --region us-east-2'
+alias awsprod='aws --profile metalytics-aws-prod --region us-east-2'
+alias awsprodro='aws --profile metalytics-prod-readonly --region us-east-2'
+alias awsroot='aws --profile metalytics-dev --region us-east-2'
+alias kdev='kubectl --context=arn:aws:eks:us-east-2:524852913654:cluster/metalytics-dev-saas'
+alias kprod='kubectl --context=arn:aws:eks:us-east-2:654654321315:cluster/metalytics-prod-saas'
+alias kprodro='kubectl --context=arn:aws:eks:us-east-2:654654321315:cluster/metalytics-prod-saas-ro'
+alias devk9s='k9s --headless --logoless --context=arn:aws:eks:us-east-2:524852913654:cluster/metalytics-dev-saas'
+alias prodk9s='k9s --headless --logoless --context=arn:aws:eks:us-east-2:654654321315:cluster/metalytics-prod-saas'
+alias prodk9sro='k9s --headless --logoless  --context=arn:aws:eks:us-east-2:654654321315:cluster/metalytics-prod-saas-ro'
+alias devhelm='helm --kube-context=arn:aws:eks:us-east-2:524852913654:cluster/metalytics-dev-saas'
+alias prodhelm='helm --kube-context=arn:aws:eks:us-east-2:654654321315:cluster/metalytics-prod-saas'
+alias prodrohelm='helm --kube-context=arn:aws:eks:us-east-2:654654321315:cluster/metalytics-prod-saas-ro'
+
+
+
+alias snowsql='/Users/dex/Applications/SnowSQL.app/Contents/MacOS/snowsql'
+alias gpr='git pull --rebase'
+alias gpr='git pull --rebase'
+alias gpr='git pull --rebase'
+alias cursor='open -a Cursor.app'
+alias cursor='open -a Cursor.app'
+alias tf='terraform'
+
+export nv=--no-verify
+alias ww='w'
+alias windsurf='open -a Windsurf'
+alias grip='/Users/dex/.venv/bin/grip'
+alias grip='/Users/dex/.venv/bin/grip'
+
+function vprompt() {
+	file=$(mktemp)
+	vim $file
+	cat $file | $1
+}

@@ -1,8 +1,7 @@
 set -o vi
 export TERM=xterm-256color
 export EDITOR="vim"
-source ~/.mark
-source ~/.venv/bin/activate
+source ~/.mark source ~/.venv/bin/activate
 source ~/.aliases
 source ~/.gpg-ssh-etc
 
@@ -23,3 +22,14 @@ export GOPATH=~/go
 
 . $HOME/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 . $HOME/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+
+# added by Snowflake SnowSQL installer
+export PATH=/Users/dex/bin:$PATH
+export CLERK_HOST_PATH=$HOME/go/src/github.com/metalytics-dev/clerk-sdk-python
+
+if [[ -f "$HOME/.anthropic" ]]; then
+  source "$HOME/.anthropic"
+fi
+. "$HOME/.cargo/env"
+
+

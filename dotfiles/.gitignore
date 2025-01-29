@@ -1,11 +1,16 @@
+examples/crewai/crewai_db_*
+tmp.png
+copilot.md
 support-bundle-*
 enterprise-gtm-starter
 password.txt
 old_server
 kustomize/overlays/dev_dex
+*-unsealed.yaml
 
 .DS_Store
 .idea/
+!.idea/runConfigurations
 .env
 /target
 .vagrant/

@@ -1,13 +1,11 @@
 <scheme name="Tonic" version="142" parent_scheme="Default">
   <option name="FONT_SCALE" value="1.0" />
   <metaInfo>
-    <property name="modified">2021-12-19T10:00:50</property>
+    <property name="modified">2024-05-01T06:57:56</property>
   </metaInfo>
   <option name="LINE_SPACING" value="1.1" />
   <option name="EDITOR_FONT_SIZE" value="17" />
   <option name="EDITOR_FONT_NAME" value="Menlo" />
-  <option name="CONSOLE_FONT_NAME" value="Menlo" />
-  <option name="CONSOLE_FONT_SIZE" value="8" />
   <colors>
     <option name="ADDED_LINES_COLOR" value="65cf65" />
     <option name="ANNOTATIONS_COLOR" value="8b999f" />
@@ -910,12 +908,8 @@
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
-    <option name="JS.PARAMETER">
-      <value>
-        <option name="EFFECT_COLOR" value="a9b7c6" />
-        <option name="EFFECT_TYPE" value="1" />
-      </value>
-    </option>
+    <option name="JS.LOCAL_VARIABLE" baseAttributes="" />
+    <option name="JS.PARAMETER" baseAttributes="" />
     <option name="JS.REGEXP">
       <value>
         <option name="FOREGROUND" value="5656d0" />
@@ -10953,29 +10947,32 @@
         <option name="FOREGROUND" value="219598" />
       </value>
     </option>
-    <option name="PY.DECORATOR">
+    <option name="PY.ANNOTATION">
       <value>
-        <option name="FOREGROUND" value="85ff85" />
+        <option name="FOREGROUND" value="46be64" />
       </value>
     </option>
-    <option name="PY.FUNC_DEFINITION">
-      <value>
-        <option name="FOREGROUND" value="77ff7a" />
-      </value>
-    </option>
+    <option name="PY.BUILTIN_NAME" baseAttributes="DEFAULT_PREDEFINED_SYMBOL" />
     <option name="PY.KEYWORD_ARGUMENT">
       <value>
         <option name="FOREGROUND" value="ddca57" />
       </value>
     </option>
-    <option name="PY.PARAMETER">
-      <value>
-        <option name="FOREGROUND" value="ddca57" />
-      </value>
-    </option>
+    <option name="PY.PREDEFINED_DEFINITION" baseAttributes="DEFAULT_PREDEFINED_SYMBOL" />
+    <option name="PY.PREDEFINED_USAGE" baseAttributes="DEFAULT_PREDEFINED_SYMBOL" />
     <option name="PY.SELF_PARAMETER">
       <value>
         <option name="FOREGROUND" value="dda661" />
+      </value>
+    </option>
+    <option name="PY.STRING.B">
+      <value>
+        <option name="FOREGROUND" value="b0b0ff" />
+      </value>
+    </option>
+    <option name="PY.TYPE_PARAMETER">
+      <value>
+        <option name="FOREGROUND" value="6ee692" />
       </value>
     </option>
     <option name="RAINBOW_COLOR0">
@@ -11225,6 +11222,11 @@
         <option name="FOREGROUND" value="ffe567" />
         <option name="FONT_TYPE" value="3" />
         <option name="ERROR_STRIPE_COLOR" value="a74c0" />
+      </value>
+    </option>
+    <option name="TS.TYPE_GUARD">
+      <value>
+        <option name="EFFECT_COLOR" value="525252" />
       </value>
     </option>
     <option name="TYPEDEF">

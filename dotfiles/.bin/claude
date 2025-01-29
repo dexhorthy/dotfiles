@@ -1,0 +1,26 @@
+#!/Users/dex/.venv/bin/python
+
+import anthropic
+import sys
+
+if len(sys.argv) < 2:
+    input = sys.stdin.read()
+else:
+    input = " ".join(sys.argv[1:])
+
+if not input:
+    raise ValueError("pass input as argv or stdin")
+
+client = anthropic.Anthropic()
+
+with client.messages.stream(
+    max_tokens=8096,
+    messages=[
+        {"role": "user", "content": input}
+    ],
+    model="claude-3-5-sonnet-20240620",
+) as stream:
+  for text in stream.text_stream:
+      print(text, end="", flush=True)
+print("")
+
