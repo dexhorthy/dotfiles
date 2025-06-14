@@ -393,3 +393,6 @@ function ctree() {
 }
 alias tath=tmux a -t hlyr=''
 alias tath=tmux a -t hlyr-4=''
+
+alias ovim=/usr/bin/vim
+alias vim=nvim
