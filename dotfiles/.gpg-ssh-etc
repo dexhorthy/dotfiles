@@ -42,3 +42,43 @@ function gpg_2_reset_agent_2() {
 	echo
 }
 
+#!/bin/bash
+
+pg_2_reset_agent_2 () {
+    echo "Stopping gpg-agent and related processes..."
+    
+    # Kill all gpg-agent processes more forcefully
+    pkill -9 gpg-agent || true
+    
+    echo "Killing SSH processes..."
+    # Kill SSH processes more safely
+    pkill -x ssh || true
+    
+    echo "Cleaning up SSH and GPG sockets..."
+    # Clean up any stale sockets
+    rm -rf /tmp/gpg-* ~/.gnupg/S.gpg-agent* 2>/dev/null || true
+    
+    echo "Restarting gpg-agent..."
+    # Start fresh gpg-agent with all components
+    gpg-agent --daemon --enable-ssh-support --write-env-file "${HOME}/.gpg-agent-info"
+    
+    # Export GPG environment variables
+    if [ -f "${HOME}/.gpg-agent-info" ]; then
+        . "${HOME}/.gpg-agent-info"
+        export GPG_AGENT_INFO
+        export SSH_AUTH_SOCK
+        export SSH_AGENT_PID
+    fi
+    
+    # Ensure gpg knows about the card
+    echo "Reloading GPG card..."
+    gpg --card-status
+    
+    echo
+    echo "All done. Now:"
+    echo "1. Unplug your YubiKey"
+    echo "2. Wait 5 seconds"
+    echo "3. Plug it back in"
+    echo "4. Try your git command again"
+    echo
+}

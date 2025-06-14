@@ -13,7 +13,7 @@ if not input:
     raise ValueError("pass input as argv or stdin")
 
 stream = client.chat.completions.create(
-    model="o1-preview",
+    model="gpt-4-turbo-2024-04-09",
     messages=[
         {
             "role": "user",

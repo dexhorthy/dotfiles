@@ -60,6 +60,16 @@ function dj() {
     cd ${org}/$1 2>/dev/null && echo cd ${org}/$1 
 }
 
+function hlj() {
+    org=${GOPATH}/src/github.com/humanlayer
+    cd ${org}/$1 2>/dev/null && echo cd ${org}/$1 
+}
+
+function hcj() {
+    org=${GOPATH}/src/github.com/humanlayer-collab
+    cd ${org}/$1 2>/dev/null && echo cd ${org}/$1 
+}
+
 function rhj() {
     org=${GOPATH}/src/github.com/replicatedhq
     cd ${org}/$1 && echo cd ${org}/$1 
@@ -96,7 +106,7 @@ function gco1() {
 function gclaude() {
     local base_branch=${1:-main}  # Use the first argument if provided, otherwise default to 'main'
 
-    msg=$((echo "read this git commit and generate a new summary"; git diff "$base_branch"..HEAD; echo -e '\n\nINSTRUCTIONS - summarize in proper git commit format, with title on the first line and summary below - use this template, being very brief and concise, only a few short bullet points per line: \n\n'; cat .github/PULL_REQUEST_TEMPLATE.md) | claude)
+    msg=$((echo "read this git commit and generate a new summary"; git diff "$base_branch"..HEAD; echo -e '\n\nINSTRUCTIONS - summarize in proper git commit format, with title on the first line and summary below - use this template, being very brief and concise, only a few short bullet points per line: \n\n'; cat .github/PULL_REQUEST_TEMPLATE.md) | claude -r)
     gcaa -m "$msg"
     gcaa
 }
@@ -263,6 +273,12 @@ function gimme() {
 
 ## /PITH
 
+## TMUX
+function st() {
+    printf '\033]2;%s\033\\' "$1"
+}
+## /TMUX
+
 function osudo() {
   echo $@  > /tmp/osudo_script.sh
   chmod +x /tmp/osudo_script.sh
@@ -277,6 +293,7 @@ function osudo() {
 alias gratch='grip ~/Documents/notes/fzf-vim/.tmp'
 alias grhh='git reset --hard head'
 alias pych='open -a PyCharm.app'
+alias idea='open -a Intellij\ Idea.app'
 alias goland='open -a GoLand.app'
 [ -f $HOME/.ial ] && . $HOME/.ial
 
@@ -289,7 +306,7 @@ alias gpr='git pull --rebase'
 alias gpr='git pull --rebase'
 alias gpr='git pull --rebase'
 alias cursor='open -a Cursor.app'
-alias cursor='open -a Cursor.app'
+alias cs=cursor
 alias tf='terraform'
 
 export nv=--no-verify
@@ -302,4 +319,77 @@ function vprompt() {
 	file=$(mktemp)
 	vim $file
 	cat $file | $1
+
 }
+
+
+alias dpop='RESEND_API_KEY=${DEX_HUMANLAYER_DEV_RESEND_API_KEY} ~/bin/pop'
+export POP_FROM='dex@dex.humanlayer.dev'
+export POP_REPLY_TO='dexter@humanlayer.dev'
+
+
+alias mclaude='mods'
+alias o1='mods -m o1-preview'
+alias o3='mods -m o3-mini'
+alias ccl='npx claude'
+alias chl='cursor ~/go/src/github.com/humanlayer/humanlayer'
+alias cml='cursor ~/go/src/github.com/metaltyics-dev/metalytics'
+alias dc='docker-compose'
+alias jcp='j acp'
+
+function addplan() {
+    echo "- $@" >> ~/.plan.md
+}
+
+function vplan() {
+   $EDITOR ~/.plan.md
+}
+
+
+
+generate_random_string() {
+  local length=$1
+  local chars='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~'
+
+  # Use /dev/urandom for cryptographic randomness
+  tr -dc "$chars" < /dev/urandom | head -c "$length"
+  echo # Add newline
+}
+
+
+# $ ctree build-x-feature 4 'refactor xyz'
+function ctree() {
+    name=$1
+    if [ -z "$name" ]; then
+        echo "Usage: ctree <name>"
+        return 1
+    fi
+    shift
+    count=${1:-1}
+    shift
+
+    current_dir=$(pwd)
+    dirname=$(basename $current_dir)
+
+    worktree_dir=$current_dir/../$dirname-$name
+
+    for i in $(seq 1 $count); do
+        worktree_dir=$current_dir/../$dirname-$name-$i
+        echo "Creating worktree for $name in $worktree_dir"
+        git worktree add $worktree_dir $name
+        cd $worktree_dir
+        echo "Worktree created in $worktree_dir"
+    done
+
+    # launch a tmux session for each worktree
+    # and run claude $@ in each one
+    for i in $(seq 1 $count); do
+        worktree_dir=$current_dir/../$dirname-$name-$i
+        tmux new-session -s $dirname-$name-$i -n $dirname-$name-$i
+        tmux send-keys "cd $worktree_dir" C-m
+        tmux send-keys "claude $@ --worktree $worktree_dir" C-m
+    done
+
+}
+alias tath=tmux a -t hlyr=''
+alias tath=tmux a -t hlyr-4=''

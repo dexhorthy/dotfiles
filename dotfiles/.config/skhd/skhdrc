@@ -1,5 +1,6 @@
 # opens iterm
 shift + alt - return : /Users/dex/.bin/new_iterm_window.sh
+shift + alt - o : /Users/dex/.bin/urls.zsh
 
 # restart
 shift + alt - r : yabai --restart-service
@@ -19,6 +20,21 @@ alt - h : yabai -m window --focus west
 alt - j : yabai -m window --focus south
 alt - k : yabai -m window --focus north
 alt - l : yabai -m window --focus east
+
+# ========= Stack ===================
+
+alt - s     : yabai -m window --stack next         # Stack focused window with the next window
+alt - j     : yabai -m window --focus stack.prev   # Focus the previous window in the stack
+alt - k     : yabai -m window --focus stack.next   # Focus the next window in the stack
+
+# In ~/.skhdrc – move focused window down in stack (swap with next; if at bottom, wrap to top)
+# shift + alt - j : yabai -m window --swap stack.next 
+
+# Move focused window up in stack (swap with previous; if at top, wrap to bottom)
+# shift + alt - k : yabai -m window --swap stack.prev 
+
+# alt - enter : yabai -m window --insert stack && open -na "Terminal" \
+             # Insert next new window into stack and launch Terminal
 
 
 # ========== Moving Windows ====================

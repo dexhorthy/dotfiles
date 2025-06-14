@@ -1,3 +1,8 @@
+.claude/
+voidrice/
+opencode/
+tokens_curl_*
+token.json
 examples/crewai/crewai_db_*
 tmp.png
 copilot.md
