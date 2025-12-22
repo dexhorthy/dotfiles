@@ -1,7 +1,7 @@
 <scheme name="Tonic" version="142" parent_scheme="Default">
   <option name="FONT_SCALE" value="1.0" />
   <metaInfo>
-    <property name="modified">2025-05-30T14:03:07</property>
+    <property name="modified">2025-12-07T10:22:17</property>
   </metaInfo>
   <option name="LINE_SPACING" value="1.1" />
   <option name="EDITOR_FONT_SIZE" value="17" />
@@ -908,8 +908,8 @@
         <option name="FONT_TYPE" value="1" />
       </value>
     </option>
-    <option name="JS.LOCAL_VARIABLE" baseAttributes="DEFAULT_LOCAL_VARIABLE" />
-    <option name="JS.PARAMETER" baseAttributes="DEFAULT_PARAMETER" />
+    <option name="JS.LOCAL_VARIABLE" baseAttributes="" />
+    <option name="JS.PARAMETER" baseAttributes="" />
     <option name="JS.REGEXP">
       <value>
         <option name="FOREGROUND" value="5656d0" />

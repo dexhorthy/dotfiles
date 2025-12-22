@@ -1,17 +1,16 @@
 #!/usr/bin/zsh
-
-## THIS FILE
+# ~/.aliases
 alias al=". ~/.aliases"
 alias val="vim ~/.aliases && al"
+function aal () {
+    echo "alias $1='$2'" >> ~/.aliases
+    al
+}
 
 function wal() {
     alias | grep $1 || which $1
 }
 
-function aal () {
-    echo "alias $1='$2'" >> ~/.aliases
-    al
-}
 ## /THIS FILE
 
 
@@ -52,27 +51,32 @@ splitPomoDays() {
 
 function rj() {
     org=${GOPATH}/src/github.com/replicatedcom
-    cd ${org}/$1 2>/dev/null && echo cd ${org}/$1 
+    cd ${org}/$1 2>/dev/null && echo cd ${org}/$1
 }
 
 function dj() {
     org=${GOPATH}/src/github.com/dexhorthy
-    cd ${org}/$1 2>/dev/null && echo cd ${org}/$1 
+    cd ${org}/$1 2>/dev/null && echo cd ${org}/$1
+}
+
+function wtj() {
+    wt=${HOME}/.humanlayer/worktrees/$1
+    cd ${wt} 2>/dev/null && echo cd ${wt}
 }
 
 function hlj() {
     org=${GOPATH}/src/github.com/humanlayer
-    cd ${org}/$1 2>/dev/null && echo cd ${org}/$1 
+    cd ${org}/$1 2>/dev/null && echo cd ${org}/$1
 }
 
 function hcj() {
     org=${GOPATH}/src/github.com/humanlayer-collab
-    cd ${org}/$1 2>/dev/null && echo cd ${org}/$1 
+    cd ${org}/$1 2>/dev/null && echo cd ${org}/$1
 }
 
 function rhj() {
     org=${GOPATH}/src/github.com/replicatedhq
-    cd ${org}/$1 && echo cd ${org}/$1 
+    cd ${org}/$1 && echo cd ${org}/$1
 }
 
 function rcj() {
@@ -144,7 +148,7 @@ alias gpo="git push origin"
 alias gpu="git push upstream"
 
 function ss() {
-    git log --color --graph --decorate --pretty=format:'%C(bold blue)%h%Creset %an %C(bold cyan)%G?%Creset -%C(green)%d%Creset %s %C(bold cyan)(%cr)%Creset' --abbrev-commit --date=relative 
+    git log --color --graph --decorate --pretty=format:'%C(bold blue)%h%Creset %an %C(bold cyan)%G?%Creset -%C(green)%d%Creset %s %C(bold cyan)(%cr)%Creset' --abbrev-commit --date=relative
 }
 
 # hard reset to upstream branch
@@ -277,6 +281,27 @@ function gimme() {
 function st() {
     printf '\033]2;%s\033\\' "$1"
 }
+
+function tbreak() {
+    if [ $# -ne 2 ]; then
+        echo "Usage: tbreak <pane_number> <new_window_name>"
+        return 1
+    fi
+
+    local pane_num=$1
+    local window_name=$2
+    local current_session=$(tmux display-message -p '#S')
+    local current_window=$(tmux display-message -p '#W')
+
+    # Check if a window with that name already exists
+    if tmux list-windows -t ${current_session} -F '#{window_name}' | grep -q "^${window_name}$"; then
+        # Join to existing window
+        tmux join-pane -s ${current_session}:${current_window}.${pane_num} -t ${current_session}:${window_name}
+    else
+        # Create new window
+        tmux break-pane -s ${current_session}:${current_window}.${pane_num} -n ${window_name}
+    fi
+}
 ## /TMUX
 
 function osudo() {
@@ -312,8 +337,7 @@ alias tf='terraform'
 export nv=--no-verify
 alias ww='w'
 alias windsurf='open -a Windsurf'
-alias grip='/Users/dex/.venv/bin/grip'
-alias grip='/Users/dex/.venv/bin/grip'
+alias grip='go-grip'
 
 function vprompt() {
 	file=$(mktemp)
@@ -391,8 +415,38 @@ function ctree() {
     done
 
 }
-alias tath=tmux a -t hlyr=''
-alias tath=tmux a -t hlyr-4=''
-
 alias ovim=/usr/bin/vim
 alias vim=nvim
+alias hts='humanlayer thoughts sync'
+alias cb='codebuff'
+
+
+export HUMANLAYER_BASE_REPO=~/go/src/github.com/humanlayer/synclayer
+
+function hlwt() {
+    local branch="${1}"
+    if [ -z "$branch" ]; then
+        echo "Usage: hlwt "
+        echo "Example: hlwt linear-assistant/eng-2116-increase-user-discovery"
+        return 1
+    fi
+
+    cd "$HUMANLAYER_BASE_REPO" && \
+    local dir=$(echo "$branch" | cut -d '/' -f 2 | cut -d '-' -f 1-2) && \
+    git fetch upstream && \
+    ./scripts/create_worktree.sh --no-thoughts "$dir" "upstream/$branch"
+
+    hlwtgo "${branch}"
+}
+
+function hlwtgo() {
+    local branch="${1}"
+    if [ -z "$branch" ]; then
+        echo "Usage: hlwtgo "
+        echo "Example: hlwt linear-assistant/eng-2116-increase-user-discovery"
+        return 1
+    fi
+
+    local dir=$(echo "$branch" | cut -d '/' -f 2 | cut -d '-' -f 1-2) && \
+    cd ~/wt/synclayer/"$dir" && push packages/hlyr && bun run build; popd && bun run dev
+}

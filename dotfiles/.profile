@@ -16,6 +16,9 @@ export NVIM_HOME="$HOME/meta/notes/nvim"
 #export POMO_LOG_PATH="$HOME/meta/notes/pomo"
 export POMO_LOG_PATH=~/Documents/notes/fzf-vim/pomo.md
 export HELM_EXPERIMENTAL_OCI=1
+export CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR=1
+export MAX_THINKING_TOKENS=25000
+export PATH="$PATH:$HOME/.claude/local"
 
 export GOPATH=~/go
 
@@ -32,4 +35,9 @@ if [[ -f "$HOME/.anthropic" ]]; then
 fi
 . "$HOME/.cargo/env"
 
+export HUMANLAYER_WORKTREE_OVERRIDE_BASE=~/wt
 
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - bash)"

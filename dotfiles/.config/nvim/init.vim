@@ -26,9 +26,18 @@ call plug#end()
 " Essential settings
 set title                    " Set window title
 set mouse=a                  " Enable mouse support
-set clipboard+=unnamedplus   " Use system clipboard
+" set clipboard+=unnamedplus   " Use system clipboard (disabled - causing problems)
 set encoding=utf-8           " UTF-8 encoding
 set number                   " Static line numbers
+
+" PERSISTENT UNDO - critical for workflow
+set undofile
+set undodir=~/.config/nvim/undo
+silent !mkdir -p ~/.config/nvim/undo
+
+" PERSISTENT VIM CLIPBOARD - critical for workflow
+set viminfo+=n~/.config/nvim/viminfo
+set viminfo='100,<50,s10,h
 
 " Clean interface
 set noshowmode              " Don't show mode (airline handles this)
@@ -197,7 +206,7 @@ function! OpenFloatingTerminal(command)
     let height = float2nr(&lines * 0.6)
     let col = float2nr((&columns - width) / 2)
     let row = float2nr((&lines - height) / 2)
-    
+
     let opts = {
         \ 'relative': 'editor',
         \ 'width': width,
@@ -207,22 +216,22 @@ function! OpenFloatingTerminal(command)
         \ 'style': 'minimal',
         \ 'border': 'rounded'
         \ }
-    
+
     let win = nvim_open_win(buf, v:true, opts)
-    
+
     " Execute command and capture output
     let output = system('nu -c ' . shellescape(a:command))
     let lines = split(output, '\n')
-    
+
     " Add command header and output
     let first_line = split(a:command, '\n')[0]
     call nvim_buf_set_lines(buf, 0, -1, v:false, ['> ' . first_line, ''] + lines)
-    
+
     " Set buffer options for easy navigation
     setlocal buftype=nofile
     setlocal bufhidden=wipe
     setlocal noswapfile
     setlocal readonly
     setlocal filetype=nushell
-    
+
 endfunction

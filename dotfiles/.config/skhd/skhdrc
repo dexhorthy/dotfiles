@@ -28,10 +28,10 @@ alt - j     : yabai -m window --focus stack.prev   # Focus the previous window i
 alt - k     : yabai -m window --focus stack.next   # Focus the next window in the stack
 
 # In ~/.skhdrc – move focused window down in stack (swap with next; if at bottom, wrap to top)
-# shift + alt - j : yabai -m window --swap stack.next 
+# shift + alt - j : yabai -m window --swap stack.next
 
 # Move focused window up in stack (swap with previous; if at top, wrap to bottom)
-# shift + alt - k : yabai -m window --swap stack.prev 
+# shift + alt - k : yabai -m window --swap stack.prev
 
 # alt - enter : yabai -m window --insert stack && open -na "Terminal" \
              # Insert next new window into stack and launch Terminal
@@ -72,7 +72,7 @@ lctrl + alt - l : yabai -m window --resize right:30:0
 
 # ========== Misc ==============================
 
-# hard restarts 
+# hard restarts
 lctrl + shift + alt - r : brew services restart yabai && brew services restart skhd
 
 # make window native fullscreen

@@ -52,3 +52,9 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Added by Windsurf
 export PATH="/Users/dex/.codeium/windsurf/bin:$PATH"
+
+
+# Add to ~/.zshrc or ~/.bashrc
+export ANTHROPIC_BASE_URL="http://localhost:9900/v1"
+export ANTHROPIC_API_KEY="sk_boomer"
+

@@ -1,4 +1,7 @@
-.claude/
+.obsidian/
+claude-api-logs/
+baml_client/*
+.opencode/
 voidrice/
 opencode/
 tokens_curl_*
@@ -41,3 +44,5 @@ initcontainer-logs/manifests/0-10-12/
 initcontainer-logs/manifests/0-38-0/
 initcontainer-logs/manifests/0-10-12.tar.gz
 initcontainer-logs/manifests/0-38-0.tar.gz
+tmp.md
+**/.claude/settings.local.json
