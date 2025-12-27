@@ -48,40 +48,14 @@ splitPomoDays() {
 ## /WRITING
 
 ## PATHS
-
-function rj() {
-    org=${GOPATH}/src/github.com/replicatedcom
-    cd ${org}/$1 2>/dev/null && echo cd ${org}/$1
-}
-
 function dj() {
-    org=${GOPATH}/src/github.com/dexhorthy
+    org=$HOME/repos/dexhorthy
     cd ${org}/$1 2>/dev/null && echo cd ${org}/$1
-}
-
-function wtj() {
-    wt=${HOME}/.humanlayer/worktrees/$1
-    cd ${wt} 2>/dev/null && echo cd ${wt}
 }
 
 function hlj() {
-    org=${GOPATH}/src/github.com/humanlayer
+    org=$HOME/repos
     cd ${org}/$1 2>/dev/null && echo cd ${org}/$1
-}
-
-function hcj() {
-    org=${GOPATH}/src/github.com/humanlayer-collab
-    cd ${org}/$1 2>/dev/null && echo cd ${org}/$1
-}
-
-function rhj() {
-    org=${GOPATH}/src/github.com/replicatedhq
-    cd ${org}/$1 && echo cd ${org}/$1
-}
-
-function rcj() {
-    org=${GOPATH}/src/github.com/replicated-collab
-    cd ${org}/$1 && echo cd ${org}/$
 }
 
 ## /PATHS
@@ -450,3 +424,5 @@ function hlwtgo() {
     local dir=$(echo "$branch" | cut -d '/' -f 2 | cut -d '-' -f 1-2) && \
     cd ~/wt/synclayer/"$dir" && push packages/hlyr && bun run build; popd && bun run dev
 }
+alias hl='apps/hlyr/dist/humanlayer'
+alias hl='/Users/dex/wt/synclayer/eng-2612-thoughts-v2-slug-structure/apps/hlyr/dist/humanlayer'

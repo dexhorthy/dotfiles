@@ -2,5 +2,13 @@
   "env": {
     "MAX_THINKING_TOKENS": "32000",
     "CLAUDE_BASE_MAINTAIN_PROJECT_WORKING_DIR": "1"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(./scripts/spec_metadata.sh)",
+      "Bash(scripts/spec_metadata.sh)",
+      "Bash(bash scripts/spec_metadata.sh)"
+    ],
+    "defaultMode": "default"
   }
 }
